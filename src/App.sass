@@ -1,0 +1,102 @@
+body
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+.calculator
+  margin: 30px auto
+  width: 400px
+  height: 660px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  .operation-wrap
+    display: flex
+    flex-grow: 1
+    height: 20%
+    .operation
+      width: 50%
+      background-color: #8fbfdb
+      padding: 20px
+      h4
+        margin: 0
+      p
+        width: 100%
+        margin: 5px
+        text-align: center
+        font-size: 20px
+    .result
+      width: 50%
+      background-color: #f0f0f0
+      padding: 20px
+      h4
+        margin: 0
+      p
+        width: 100%
+        margin: 5px
+        text-align: center
+        font-size: 20px
+  .keybord
+    display: flex
+    .numbers
+      display: flex
+      flex-wrap: wrap
+      flex-grow: 1
+      color: white
+      font-size: 25px
+      .number
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-grow: 1
+        flex-wrap: wrap
+        width: 33%
+        background-color: black
+        border-right: 1px solid white
+        border-bottom: 1px solid white
+        cursor: pointer
+        &:nth-of-type(3n)
+          border-right: none
+        &:nth-last-child(1)
+          border: none
+
+    .actions
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      flex-grow: 0
+      color: white
+      font-size: 25px
+      cursor: pointer
+      background-color: blue
+      .action
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100px
+        height: 100px
+        border-bottom: 1px solid black
+        &:nth-last-child(1)
+          border: none
+      .equal
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100px
+        height: 100px
+  .reset-box
+    display: flex
+    height: 10%
+    font-weight: bold
+    cursor: pointer
+    .clear
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 50%
+      background-color: #f0f0f0
+    .reset
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 50%
+      background-color: #8fbfdb
