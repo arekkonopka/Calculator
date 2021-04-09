@@ -1,19 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Calculator = () => {
-  const [firstNumber, setFirstNumber] = useState('')
-  const [secondNumber, setSecondNumber] = useState('')
+  const [firstNumber, setFirstNumber] = useState([''])
+  const [secondNumber, setSecondNumber] = useState([''])
   const [operator, setOperator] = useState('')
   const [result, setResult] = useState('')
+
 
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   const action = ["+", "-", "*", "/",]
 
   const onClickNumberHandler = (number) => {
-    if (!firstNumber) {
-      setFirstNumber(number.target.textContent)
-    } else {
-      setSecondNumber(number.target.textContent)
+    if (!operator) {
+      setFirstNumber((prev) => [...prev, number.target.textContent])
+    }
+    else {
+      setSecondNumber((prev) => [...prev, number.target.textContent])
     }
   }
 
@@ -24,35 +26,43 @@ const Calculator = () => {
   const onClickResultHandler = () => {
     switch (operator) {
       case "+":
-        setResult(Number(firstNumber) + Number(secondNumber))
+        setResult(Number(firstNumber.join('')) + Number(secondNumber.join('')))
         break;
       case "-":
-        setResult(Number(firstNumber) - Number(secondNumber))
+        setResult(Number(firstNumber.join('')) - Number(secondNumber.join('')))
         break;
       case "*":
-        setResult(Number(firstNumber) * Number(secondNumber))
+        setResult(Number(firstNumber.join('')) * Number(secondNumber.join('')))
         break;
       case "/":
-        setResult(Number(firstNumber) / Number(secondNumber))
+        setResult(Number(firstNumber.join('')) / Number(secondNumber.join('')))
         break;
     }
   }
+
+
   const onClickClear = () => {
-    if (firstNumber && operator && secondNumber) {
-      setSecondNumber('')
-      console.log(1)
-    } else if (firstNumber && operator) {
+    if (Number(firstNumber.join('')) && operator && Number(secondNumber.join(''))) {
+      secondNumber.splice(secondNumber.length - 1, 1)
+      setSecondNumber(prev => [...prev])
+
+
+    } else if (firstNumber.join('') && operator) {
       setOperator('')
+
     } else {
-      setFirstNumber('')
+      firstNumber.splice(firstNumber.length - 1, 1)
+      setFirstNumber(prev => [...prev])
+
     }
   }
   const onClickReset = () => {
-    setFirstNumber('')
-    setSecondNumber('')
+    setFirstNumber([''])
+    setSecondNumber([''])
     setOperator('')
-    setResult('')
+    setResult([''])
   }
+
 
 
   return (
@@ -60,11 +70,11 @@ const Calculator = () => {
       <div className="operation-wrap">
         <div className="operation">
           <h4>Operation:</h4>
-          <p>{`${firstNumber}${operator}${secondNumber}`}</p>
+          <p>{`${firstNumber.join("")}${operator}${secondNumber.join('')}`}</p>
         </div>
         <div className='result'>
           <h4>Score:</h4>
-          <p>{result}</p>
+          <p>{(result)}</p>
         </div>
       </div>
       <div className="keybord">
